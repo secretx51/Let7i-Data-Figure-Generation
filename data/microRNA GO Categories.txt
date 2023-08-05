@@ -1,0 +1,84 @@
+1. Cytokine Production:
+Interleukin-1 production
+Interleukin-10 production
+Interleukin-12 production
+Interleukin-13 production
+Interleukin-17 production
+Interleukin-2 production
+Interleukin-4 production
+Interleukin-5 production
+Interleukin-6 production
+Interleukin-8 production
+Type I interferon production
+Interferon-gamma production
+Tumor necrosis factor superfamily cytokine production
+production of molecular mediator of immune response
+Chemokine production
+cytokine secretion
+2. Immune Response Activation:
+Lymphocyte activation involved in immune response
+Angiogenesis
+Myeloid dendritic cell activation
+T cell activation
+B cell activation
+Macrophage activation
+Natural killer cell activation
+Mast cell activation
+type 2 immune response
+Somatic diversification of immune receptors
+Humoral immune response
+3. Immune Response Regulation:
+regulation of response to cytokine stimulus
+Negative regulation of cytokine production
+Positive regulation of cytokine production
+Tolerance induction
+Negative regulation of immune system process
+Regulation of leukocyte activation
+Regulation of immune effector process
+Immune response-regulating signaling pathway
+Regulation of inflammatory response
+Regulation of innate immune response
+4. Inflammatory Response:
+leukocyte activation involved in inflammatory response
+Inflammatory response to antigenic stimulus
+antigen processing and presentation
+Acute inflammatory response
+Production of molecular mediator involved in inflammatory response
+Neuroinflammatory response
+organ or tissue specific immune response
+Vascular endothelial growth factor production
+Vascular endothelial growth factor receptor signaling pathway
+Spleen development
+regulation of hemopoiesis
+5. Cellular Immunity:
+Neutrophil mediated immunity
+Mast cell mediated immunity
+Lymphocyte mediated immunity
+Granulocyte activation
+6. Cellular Differentiation:
+Hematopoietic progenitor cell differentiation
+Leukocyte differentiation
+Myeloid cell differentiation
+Cellular response to vascular endothelial growth factor stimulus
+Asymmetric cell division
+Leukocyte cell-cell adhesion
+Leukocyte migration
+Leukocyte proliferation
+7. Response to Cytokines:
+Response to type I interferon
+Response to interferon-gamma
+Response to tumor necrosis factor
+Response to interferon-alpha
+Response to interferon-beta
+Response to interleukin-1
+Response to interleukin-4
+Response to interleukin-6
+Response to transforming growth factor beta
+Response to interleukin-7
+response to interleukin-12
+Response to leukemia inhibitory factor
+Response to chemokine
+Leukocyte apoptotic process
+Inflammatory cell apoptotic process
+myeloid cell apoptotic process
+anoikis
