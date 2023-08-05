@@ -16,7 +16,14 @@ This repository contains supporting material for the manuscript:
     <li>
       <a href="#about">About</a>
     </li>
-    <li><a href="#code-and-figures">Code and Figures</a></li>
+    <li>
+      <a href="#code-and-figures">Code and Figures</a>
+      <ul>
+        <li><a href="#ncbi-gene-search">NCBI Gene Search</a></li>
+        <li><a href="#gene-ontology-search">Gene Ontology Search</a></li>
+        <li><a href="#plot-generation">Plot Generation</a></li>
+      </ul>
+    </li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -27,7 +34,7 @@ This repository contains supporting material for the manuscript:
 
 <!-- ABOUT THE PROJECT -->
 ## About
-This project entails getting the Gene Ontology (GO) terms used to filter and plot the data that was obtained from LinkedOmics.
+This project entails searching NCBI for all miRNAs, getting the Gene Ontology (GO) terms used to filter data and plotting the data.
 <br /><br />
 The data was gathered through running all 2002 miRNAs through the LinkedOmics platform, which conducts pearson corelation tests using miRNA seq data as search and target dataset in the TCGA_OV database. Furthermore, the LinkedInterpreter module of LinkedOmics conducts analysis using Gene Set Enrichment Analysis (GSEA) using the gene ontology enrichment analysis, ranking with FDR, min samples of 3 and 500 simulations. The data is gathered and filtered using the [Genetic-Screening-Web-Automation][web-auto] tool. 
 
@@ -35,15 +42,26 @@ The data was gathered through running all 2002 miRNAs through the LinkedOmics pl
 
 <!-- Code -->
 ## Code and Figures
+
+### NCBI Gene Search
+The symbols for all miRNAs in human genome were obtained using the ```/NCBI Gene Search/filterGenome.py``` file.
+It works by searching the ```/NCBI Gene Search/ncbi-data/Homo_sapiens.xlsx``` file for the beginning of the symbols located in the ```/NCBI Gene Search/genomeSearchTerms.txt``` file. All the symbols are then outputted to ```/NCBI Gene Search/genome_output.txt``` file. The Homo_sapiens.xlsx data file is obtained from NCBI genes at 'NCBI/gene/gene_info/Homo_sapiens'.gene_info. This file is updated daily by NCBI the current version in use is from 05/07/2023.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Gene Ontology Search
 The GO terms to filter the raw data obtained from LinkedOmics are obtained by using the ```/GeneOntology/getGoTerms.py``` script. The script works by taking comma separated search parameters in  ```/GeneOntology/GO_search_terms.txt``` and searching all known GO terms in the ```/GeneOntology/go-data/go.txt``` file. The desired immunological GO terms are then outputted to ```/GeneOntology/output_GO_terms.txt```, in this case 3877/51281 GO terms were determined immunologically related.
-<br />
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Plot Generation
 The ```linkedOmicsPlot.py``` file is responsible for creating the 3 plots that can be found below. The script used 3 main data files for constructing the plots:
 
 1. The ```/data/microRNA formatted data.xlsx``` file has 2 sheets one for P-Value and the other for FDR. It contains the P-Value or FDR value for each immunological pathway for each miRNA. It is used to construct Supplementary Figure S2 and Figure 1.
 2. The ```/data/microRNA GO Categories.txt``` contains the information from supplementary table, it sorts the significant GO terms into different categories. Figure 1 uses this file to categorize the GO terms for each miRNA.
 3. The ```/data/microRNA Counts.csv``` contains data for the number of significant immunological pathways that are correlated with each miRNA, this data is used to generate Supplementary Figure S1. 
 
-All the figures can be found below:
+All the figures can be found below and in the /plots folder:
 <details>
 <summary>Figure 1 - Bubble Plot</summary>
 <img src="plots/Fig1 - Bubble Plot.png"  width="40%" height="40%">
