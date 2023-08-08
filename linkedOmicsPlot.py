@@ -31,7 +31,7 @@ def countsBarGraph(filename, gene_number):
     plt.ylim(top=subset_df['Count'].max() - 37,
             bottom=subset_df['Count'].max() + 58/factor)  # Add some padding at the top
     # Save the figure, or use plt.show() to display it in the notebook
-    plt.savefig(f'{MAIN_DIR}/plots/Fig1 - Bubble Plot', dpi=600, bbox_inches='tight')
+    plt.savefig(f'{MAIN_DIR}/plots/FigS1 - Histogram', dpi=600, bbox_inches='tight')
 
 def outputHeatMap(filename, gene_number):
     df = pd.read_excel(filename, sheet_name='P Value', index_col=0)
@@ -63,7 +63,7 @@ def outputHeatMap(filename, gene_number):
     plt.ylabel('GO Immune Processes', fontsize=0)
     plt.xlabel('Genes', fontsize=0)
 	# Save the figure, or use plt.show() to display it in the notebook
-    plt.savefig(f'{MAIN_DIR}/plots/FigS1 - Histogram', dpi=600, bbox_inches='tight')
+    plt.savefig(f'{MAIN_DIR}/plots/FigS2 - Heatmap', dpi=600, bbox_inches='tight')
 
 def lowerCaseSignature(s):
     return s[:3] + s[3:].lower()
@@ -204,7 +204,7 @@ def bubblePlot(filename, gene_number):
     plt.xticks(rotation=45, fontsize = 17, ha = 'right')
     plt.yticks(fontsize = 17)
     # Save the plot at set dpi
-    plt.savefig(f'{MAIN_DIR}/plots/FigS2 - Heatmap', dpi=600)
+    plt.savefig(f'{MAIN_DIR}/plots/Fig1 - Bubble Plot', dpi=600)
     # Show the plot (if needed)
     # plt.show()
 
