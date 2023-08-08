@@ -12,7 +12,7 @@ def countsBarGraph(filename, gene_number):
     df = pd.read_csv(filename)
     df_sorted = df.sort_values(by='Count', ascending=False)
     subset_df = df_sorted.iloc[:gene_number]
-
+    subset_df['Gene'] = subset_df['Gene'].map(lowerCaseSignature)
     # Set up the figure size for better visibility
     plt.figure(figsize=(8, 12))  # Width * Height Inches
     # Create the horizontal bar graph
@@ -31,13 +31,14 @@ def countsBarGraph(filename, gene_number):
     plt.ylim(top=subset_df['Count'].max() - 37,
             bottom=subset_df['Count'].max() + 58/factor)  # Add some padding at the top
     # Save the figure, or use plt.show() to display it in the notebook
-    plt.savefig(f'{MAIN_DIR}/plots/horizontal_bar_graph_{gene_number}.png', dpi=600, bbox_inches='tight')
+    plt.savefig(f'{MAIN_DIR}/plots/Fig1 - Bubble Plot', dpi=600, bbox_inches='tight')
 
 def outputHeatMap(filename, gene_number):
     df = pd.read_excel(filename, sheet_name='P Value', index_col=0)
     df_index = pd.read_csv(COUNTS)['Gene'].iloc[:gene_number]
     df_sorted = df.loc[df_index]
     subset_df = df_sorted.iloc[:gene_number]
+    subset_df.index = subset_df.index.map(lowerCaseSignature)
     
     trans_df = subset_df.transpose()
     trans_df["index"] = goDescriptionNames(trans_df.index)
@@ -62,7 +63,10 @@ def outputHeatMap(filename, gene_number):
     plt.ylabel('GO Immune Processes', fontsize=0)
     plt.xlabel('Genes', fontsize=0)
 	# Save the figure, or use plt.show() to display it in the notebook
-    plt.savefig(f'{MAIN_DIR}/plots/heatmap_output_{gene_number}.png', dpi=600, bbox_inches='tight')
+    plt.savefig(f'{MAIN_DIR}/plots/FigS1 - Histogram', dpi=600, bbox_inches='tight')
+
+def lowerCaseSignature(s):
+    return s[:3] + s[3:].lower()
 
 def goDescriptionNames(colnames):
     df = pd.read_excel(
@@ -146,6 +150,7 @@ def bubblePlot(filename, gene_number):
     df_index = pd.read_csv(COUNTS)['Gene'].iloc[:gene_number]
     df_sorted = df.loc[df_index]
     subset_df = df_sorted.iloc[:gene_number]
+    subset_df.index = subset_df.index.map(lowerCaseSignature)
 
     go_dict = replaceDescriptionsTerms()
     grouped_df = groupCategories(go_dict, subset_df)
@@ -199,7 +204,7 @@ def bubblePlot(filename, gene_number):
     plt.xticks(rotation=45, fontsize = 17, ha = 'right')
     plt.yticks(fontsize = 17)
     # Save the plot at set dpi
-    plt.savefig(f'{MAIN_DIR}/plots/bubble_plot_{gene_number}', dpi=600)
+    plt.savefig(f'{MAIN_DIR}/plots/FigS2 - Heatmap', dpi=600)
     # Show the plot (if needed)
     # plt.show()
 
