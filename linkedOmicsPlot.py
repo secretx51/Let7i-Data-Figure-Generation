@@ -51,9 +51,12 @@ def outputHeatMap(filename, gene_number):
     # Get the color bar object from the heatmap
     cbar = heatmap.collections[0].colorbar
     # Set the font size of the color bar label
-    cbar.ax.set_ylabel('Log2 P-Value', rotation=270, fontsize=14)
+    cbar.ax.set_ylabel('-log10(p-value)', rotation=90, fontsize=14)
     # Set the fontsize of the color bar ticks
     cbar.ax.tick_params(labelsize=12)
+    # Move tick labels to left side of colour bar
+    cbar.ax.yaxis.set_ticks_position('left')
+    #cbar.ax.yaxis.set_label_position('left') #Move cbar label if needed
 
     # Force all y-axis tick labels to appear
     plt.yticks(range(len(trans_df)), trans_df.index, fontsize = 12.5)
@@ -178,9 +181,11 @@ def bubblePlot(filename, gene_number):
     cbar = ax.figure.colorbar(sm, shrink = 0.5, 
                             location = "right", anchor=(0.3,0.998)) #Set half size
     # Label for colour bar
-    cbar.ax.set_ylabel('Log2 P-Value', rotation=270, fontsize=18)
+    cbar.ax.set_ylabel('-log10(p-value)', rotation=90, fontsize=18)
     # Set the fontsize of the color bar ticks
     cbar.ax.tick_params(labelsize=16)
+    cbar.ax.yaxis.set_ticks_position('left')
+    #cbar.ax.yaxis.set_label_position('left') #Move cbar label if needed
         
     # Add legend for bubble sizes below the plot
     bubble_sizes = range(1, max(max_size) + 1) #+1 to account for range ending 1 early
