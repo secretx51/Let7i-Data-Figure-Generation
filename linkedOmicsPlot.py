@@ -49,7 +49,8 @@ def outputHeatMap(filename, gene_number):
     
     trans_df = subset_df.transpose()
     trans_df["index"] = goDescriptionNames(trans_df.index)
-    trans_df["index"] = trans_df["index"].str.capitalize()
+    # Capitalise first letter of every GO term
+    trans_df["index"] = trans_df["index"].apply(lambda term: term[0].upper() + term[1:])
     trans_df.set_index("index", inplace=True)
     trans_df = trans_df.iloc[:45] # Top 45 pathways
 
