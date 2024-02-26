@@ -5,6 +5,8 @@ __pycache__/
 
 #Mac DS
 .DS_Store
+plots/Fig1 - Bubble Plot - 300dpi.png
+data/plot_data
 
 # C extensions
 *.so

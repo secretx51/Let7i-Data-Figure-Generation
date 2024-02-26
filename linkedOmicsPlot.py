@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
@@ -42,18 +43,15 @@ def countsBarGraph(filename, gene_number):
 
 def outputHeatMap(filename, gene_number):
     df = pd.read_excel(filename, sheet_name='P Value', index_col=0)
+    # Top 50 genes
     df_index = pd.read_csv(COUNTS)['Gene'].iloc[:gene_number]
+    # Sort the dataframe by the index
     df_sorted = df.loc[df_index]
     subset_df = df_sorted.iloc[:gene_number]
     subset_df.index = subset_df.index.map(lowerCaseSignature)
+    # Formats the dataframe GO terms for heatmap
+    trans_df = formatGOHeatmap(subset_df)
     
-    trans_df = subset_df.transpose()
-    trans_df["index"] = goDescriptionNames(trans_df.index)
-    # Capitalise first letter of every GO term
-    trans_df["index"] = trans_df["index"].apply(lambda term: term[0].upper() + term[1:])
-    trans_df.set_index("index", inplace=True)
-    trans_df = trans_df.iloc[:45] # Top 45 pathways
-
     plt.figure(figsize=(12, 9)) # Width * Height Inches
     # Generate the heatmap using seaborn's heatmap function
     heatmap = sns.heatmap(trans_df, cmap='viridis', fmt='.1f', annot=False, 
@@ -71,11 +69,18 @@ def outputHeatMap(filename, gene_number):
     # Move tick labels to left side of colour bar
     cbar.ax.yaxis.set_ticks_position('left')
     #cbar.ax.yaxis.set_label_position('left') #Move cbar label if needed
-
-    # Force all y-axis tick labels to appear
-    plt.yticks(range(len(trans_df)), trans_df.index, fontsize = 12.5)
+    
+    # Force all y-axis tick labels to appear and highlight sig indexes for let7i
+    plt.yticks(np.arange(len(trans_df))+0.5, trans_df.index, fontsize = 12.5)
     # Force all x-axis tick labels to appear and adjust their font size
-    plt.xticks(range(len(trans_df.columns)), trans_df.columns, fontsize=11.5, rotation=90)
+    plt.xticks(np.arange(len(trans_df.columns))+0.5, trans_df.columns, fontsize=11.5, rotation=90)
+    
+    # Highlight the most significant GO pathways for let-7i
+    idx_mask = getTopMask(trans_df)
+    # Update the color for the highlighted rows
+    for idx in idx_mask:
+        plt.gca().get_yticklabels()[idx].set_color('red')
+        
 	# Set the title and labels for the plot
     # plt.ylabel('GO Immune Processes', fontsize=1)
     # plt.xlabel('Genes', fontsize=1)
@@ -98,6 +103,33 @@ def goDescriptionNames(colnames):
                 current_list.append(f"{description} ({go_term})")
     return current_list
 
+def formatGOHeatmap(df):
+    trans_df = df.transpose()
+    trans_df["index"] = goDescriptionNames(trans_df.index)
+    # Capitalise first letter of every GO term
+    trans_df["index"] = trans_df["index"].apply(lambda term: term[0].upper() + term[1:])
+    trans_df.set_index("index", inplace=True)
+    # This next section orders the gene sets by non-NaN rows
+    # Create a new column that counts the number of non-NaN numbers in each row
+    trans_df['non_nan_count'] = trans_df.notnull().sum(axis=1)
+    # Sort the DataFrame by descending order based on the new column
+    trans_df = trans_df.sort_values(by='non_nan_count', ascending=False)
+    # Delete the new column
+    trans_df.drop(columns=['non_nan_count'], inplace=True)
+    trans_df = trans_df.iloc[:45] # Top 45 pathways
+    return trans_df
+
+def getTopMask(trans_df):
+    # Calculate the maximum value for each row
+    max_values_per_row = trans_df.apply(max, axis=1)
+    # Calculate the 10% leeway for each max value
+    leeway_values = max_values_per_row * 0.1
+    # Compare the 'LET-7i' column with the maximum value of each row with a leeway of ±5%
+    result_rows = trans_df[(trans_df['LET-7i'] >= max_values_per_row - leeway_values) & 
+                            (trans_df['LET-7i'] <= max_values_per_row + leeway_values)].index.tolist()
+    result_rows.append('Myeloid dendritic cell activation (GO:0001773)') # biological
+    # Get the index positions of the row labels you want to highlight
+    return [trans_df.index.get_loc(idx) for idx in result_rows]
 
 # countGenes("Gene Set")
 # countGenes("Size")
