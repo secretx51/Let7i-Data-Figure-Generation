@@ -1,11 +1,11 @@
 <!-- Readme for Let7i Manuscript by Trent Neilson -->
 <a name="readme-top"></a>
 
-# Let7i Delivery Increases Activity of Antigen Presenting Cells, T Cell Infiltrates and Suppresses Ovarian Tumour Growth 
+# Let-7i enhances anti-tumour immunity and suppresses ovarian tumour growth
 
 This repository contains supporting material for the manuscript:
 
-> Authors, ["Let7i Delivery Increases Activity of Antigen Presenting Cells, T Cell Infiltrates and Suppresses Ovarian Tumour Growth "][paper-link], *Journal* (2023)
+> Wilkinson, A., Chen, R., Coleborn, E. et al. ["Let-7i enhances anti-tumour immunity and suppresses ovarian tumour growth"][paper-link], *Cancer Immunology, Immunotherapy* 73, 80 (2024)
 
 <br>
 
@@ -93,12 +93,12 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Trent Neilson - t.neilson@uq.net.au
 
 Project Link: [https://github.com/secretx51/Let7i-Data-Figure-Generation](https://github.com/secretx51/Let7i-Data-Figure-Generation)
-
+<!-- 
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -115,7 +115,7 @@ Project Link: [https://github.com/secretx51/Let7i-Data-Figure-Generation](https:
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[paper-link]: placeholder
+[paper-link]: https://doi.org/10.1007/s00262-024-03674-w
 [web-auto]: https://github.com/secretx51/Genetic-Screening-Web-Automation
 [forks-shield]: https://img.shields.io/github/forks/secretx51/Let7i-Data-Figure-Generation.svg?style=for-the-badge
 [forks-url]: https://github.com/secretx51/Let7i-Data-Figure-Generation/network/members
